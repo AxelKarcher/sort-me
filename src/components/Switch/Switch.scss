@@ -1,0 +1,22 @@
+@use 'styles/ui' as ui;
+@use 'styles/colors' as colors;
+
+#switch-container {
+  display: flex;
+  border-radius: ui.$radius;
+  background-color: colors.$primary;
+  box-shadow: 0 0 10px 1px colors.$shadow;
+  font-size: 18px;
+  font-weight: bold;
+  overflow: hidden;
+  cursor: pointer;
+
+  .choice {
+    display: flex;
+    justify-content: center;
+    padding: calc(ui.$padding / 2);
+    box-sizing: border-box;
+  }
+
+  .choose {background-color: colors.$secondary;}
+}

@@ -1,0 +1,30 @@
+@use 'styles/colors' as colors;
+@use 'styles/ui' as ui;
+
+.button-container {
+  width: 250px;
+  display: flex;
+  justify-content: center;
+  border-radius: ui.$radius;
+  background-color: colors.$primary;
+  border: 3px solid transparent;
+  font-weight: bold;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 0 10px 1px colors.$shadow;
+  border: 2px solid transparent;
+  padding: 0 5px;
+  box-sizing: border-box;
+  transition: all ui.$durationFast;
+  user-select: none;
+
+  &:hover {box-shadow: 0 0 10px 1px colors.$text;}
+}
+
+.button-container.disabled {
+  background-color: colors.$disabled2;
+  color: colors.$disabled1;
+  cursor: not-allowed;
+
+  &:hover {box-shadow: 0 0 10px 1px transparent;}
+}

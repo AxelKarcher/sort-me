@@ -1,0 +1,31 @@
+@use 'styles/colors' as colors;
+@use 'styles/ui' as ui;
+
+.icon-container {
+  height: 60px;
+  width: 60px;
+  filter: drop-shadow(0 0 0.2rem colors.$shadow);
+  transition: all ui.$durationFast;
+}
+
+.icon-container.btn {
+  cursor: pointer;
+
+  &:hover {filter: drop-shadow(0 0 0.2rem colors.$text);}
+}
+
+.icon-container.btn.medium {
+  height: 150px;
+  width: 150px;
+}
+
+.icon-container.btn.large {
+  height: 300px;
+  width: 300px;
+}
+
+.icon-container.btn.disabled {
+  cursor: not-allowed;
+
+  &:hover {filter: drop-shadow(0 0 0.2rem colors.$shadow)}
+}
