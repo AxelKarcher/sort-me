@@ -11,7 +11,8 @@ git clone git@github.com:AxelKarcher/reactjs-template.git {new project name}
 ```
 git remote set-url origin {new repository git@github link}
 ```
-4. Commit and push in your new project
+4. Install basic packages then commit and push in your new project
 ```
-git push -u
+npm i scss react-router-dom; git push -u
 ```
+
