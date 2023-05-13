@@ -1,16 +1,23 @@
 import './Modal.scss'
 import Panel from 'components/Panel/Panel'
 
-const Modal = ({visible, handleClose, children}) => {
+const Modal = ({
+  visible, handleClose,
+  children, className, title
+}) => {
 
   const handleClick = (e) => {e?.stopPropagation()}
 
   return (
     <div
-      className={'modal-container' + (visible ? '' : ' not-visible')}
       onClick={handleClose}
+      className={
+        'modal-container' +
+        ` ${className}` +
+        (visible ? '' : ' not-visible')
+      }
     >
-      <Panel onClick={handleClick}>
+      <Panel title={title} onClick={handleClick}>
         {children}
       </Panel>
     </div>

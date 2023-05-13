@@ -2,7 +2,6 @@
 @use 'styles/ui' as ui;
 
 .button-container {
-  width: 250px;
   display: flex;
   justify-content: center;
   border-radius: ui.$radius;
@@ -21,10 +20,18 @@
   &:hover {box-shadow: 0 0 10px 1px colors.$text;}
 }
 
+.button-container.no-shadow {
+  box-shadow: 0 0 10px 1px transparent;
+
+  &:hover {box-shadow: 0 0 10px 1px transparent;}
+}
+
+.button-container.full-width {width: 100%;}
+
 .button-container.disabled {
   background-color: colors.$disabled2;
   color: colors.$disabled1;
   cursor: not-allowed;
 
-  &:hover {box-shadow: 0 0 10px 1px transparent;}
+  &:hover {box-shadow: 0 0 10px 1px colors.$shadow;}
 }

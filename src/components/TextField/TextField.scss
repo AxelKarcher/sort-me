@@ -15,17 +15,27 @@
 
   .input {
     all: unset;
-    background-color: white;
+    background-color: colors.$text;
     border-radius: ui.$radius;
     padding: 0 5px;
     color: colors.$textBis;
     border: 3px solid transparent;
     box-sizing: border-box;
+    box-shadow: 0 0 10px 1px colors.$shadow;
     transition: all ui.$durationFast;
   }
 }
 
-.textfield-container.focused {.input {border-color: colors.$primary;}}
+.textfield-container.full-width {
+  width: 100%;
+
+  .input {width: 100%;}
+}
+
+.textfield-container.focused {.input {
+  border-color: colors.$primary;
+  box-shadow: 0 0 10px 1px colors.$text;
+}}
 
 .textfield-container.no-style {
   width: 100%;
