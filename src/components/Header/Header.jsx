@@ -1,24 +1,16 @@
 import logoutSvg from 'icons/logout.svg'
 
 import './Header.scss'
-import Icon from 'components/Icon/Icon'
+import useAuth from 'hooks/useAuth'
 
-const Header = ({}) => {
+const Header = ({userInfos}) => {
 
-  const {display_name} = JSON.parse(localStorage.getItem('userInfos'))
-
-  const handleDisconnect = () => {
-    localStorage.removeItem('userToken')
-    window.location.href = '/auth'
-  }
+  const {disconnect} = useAuth()
 
   return (
     <div id='header-container'>
-      <span>{display_name}</span>
-      <Icon
-        icon={logoutSvg}
-        onClick={handleDisconnect}
-      />
+      <span>{userInfos?.display_name}</span>
+      <img src={logoutSvg} height={40} alt='logout' onClick={disconnect} />
     </div>
   )
 }

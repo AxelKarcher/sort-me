@@ -4,8 +4,9 @@
   width: 100vw;
   height: 100vh;
   color: colors.$text;
-  font-size: 30px;
+  font-size: calc(15px + 0.390625vw);
   background-color: colors.$background;
+  text-shadow: 0 0 5px colors.$shadow;
 
   ::-webkit-scrollbar {
     width: 6px;

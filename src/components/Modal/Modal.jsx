@@ -17,7 +17,7 @@ const Modal = ({
         (visible ? '' : ' not-visible')
       }
     >
-      <Panel title={title} onClick={handleClick}>
+      <Panel className='modal-panel' title={title} onClick={handleClick}>
         {children}
       </Panel>
     </div>

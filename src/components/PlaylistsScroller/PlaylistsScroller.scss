@@ -1,0 +1,12 @@
+@use 'styles/ui' as ui;
+
+#playlists-scroller-container {
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  padding: ui.$padding;
+  box-sizing: border-box;
+  gap: ui.$margin;
+  overflow-y: hidden;
+  overflow-x: scroll;
+}

@@ -1,0 +1,43 @@
+@use 'styles/ui' as ui;
+@use 'styles/colors' as colors;
+
+.playlist-card-container {
+  width: fit-content;
+  height: 90px;
+  background-color: colors.$primary;
+  border-radius: ui.$radius;
+  display: flex;
+  align-items: center;
+  gap: ui.$margin;
+  padding-right: ui.$padding;
+  box-sizing: border-box;
+  border: 3px solid colors.$text;
+  cursor: pointer;
+  transition: transform ui.$durationFast;
+  user-select: none;
+
+  .text {
+    text-align: center;
+    // font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .album-cover {
+    border-radius: calc(ui.$radius / 2) 0 0 calc(ui.$radius / 2);
+    height: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+  }
+
+  .empty-label {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.playlist-card-container.full-width {width: 100%;}
+
+.playlist-card-container.empty {padding-left: ui.$padding;}
+
+.playlist-card-container.hover {transform: scale(.95);}

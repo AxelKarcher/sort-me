@@ -8,7 +8,6 @@ const Icon = ({disabled, size, icon, onClick, className}) => (
       (onClick ? ' btn' : '') +
       (className ? ` ${className}` : '')
     }
-    height={50}
     src={icon}
     onClick={disabled ? null : onClick}
   />

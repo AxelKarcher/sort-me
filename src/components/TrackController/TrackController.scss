@@ -1,0 +1,39 @@
+@use 'styles/ui' as ui;
+@use 'styles/colors' as colors;
+
+#track-controller-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .arrow {
+    max-height: 200px;
+    height: 20vw;
+    cursor: pointer;
+    filter: drop-shadow(0px 0px 5px colors.$shadow);
+  }
+
+  #infos {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: calc(ui.$margin / 2);
+
+    #cover {
+      max-height: 200px;
+      height: 20vw;
+      border-radius: ui.$radius;
+    }
+
+    #artist-text {
+      // font-size: 18px;
+      font-weight: bold;
+    }
+  }
+
+  #audio-player {
+    filter: drop-shadow(0px 0px 5px colors.$shadow);
+  }
+
+  .right-icon {transform: rotate(180deg);}
+}

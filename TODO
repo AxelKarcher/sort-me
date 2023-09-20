@@ -2,8 +2,13 @@
 - mettre les spinners
 - couleurs à chier
 - background color global à chier
-- faire une modale de confirmation
-
+- border radius des images de PlaylistCard
+- ne pas pouvoir choisir playlist si utilisées ailleurs
+- refaire un composant Icon
+- possibilité de cacher les noms des playlists pour plus de place ?
+- pouvoir déselectionner sorter
+- carré blanc en bas du scroller dans PlaylistPicker
+- handle si image pas bonne pour PlaylistCard (créer nouvelle pour tester)
 - playlistCard goofy si text grand
-- scrollbar de la zone à playlist besoin padding bords (si bords arrondis voulus)
+- scrollbars de PlaylistsScroller besoin padding bords
 - shadow aux playlist card coupées par la zone scroll (retirées pour l'instant)
