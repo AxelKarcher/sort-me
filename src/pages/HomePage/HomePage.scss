@@ -5,15 +5,35 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   gap: ui.$margin;
 
-  #playlists {
+  #playlist-modal-btns {
+    width: 100%;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    align-items: center;
     gap: ui.$margin;
-    box-sizing: border-box;
+
+    > * {
+      flex: 1;
+    }
+  }
+
+  #playlists {
+    max-width: 100vw;
+    display: flex;
+    align-items: center;
     padding: ui.$padding;
+    padding-top: 0;
+    box-sizing: border-box;
+    gap: ui.$margin;
+    overflow-x: scroll;
+
+    &::-webkit-scrollbar-track {
+      border-radius: 0px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 0px;
+    }
   }
 }

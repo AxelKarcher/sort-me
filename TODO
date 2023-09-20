@@ -1,2 +1,9 @@
-- déconnexion
-- revoir la boucle d'authentification
+- pouvoir créer une playlist
+- mettre les spinners
+- couleurs à chier
+- background color global à chier
+- faire une modale de confirmation
+
+- playlistCard goofy si text grand
+- scrollbar de la zone à playlist besoin padding bords (si bords arrondis voulus)
+- shadow aux playlist card coupées par la zone scroll (retirées pour l'instant)

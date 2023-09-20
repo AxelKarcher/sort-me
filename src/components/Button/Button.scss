@@ -16,6 +16,7 @@
   box-sizing: border-box;
   transition: all ui.$durationFast;
   user-select: none;
+  text-align: center;
 
   &:hover {box-shadow: 0 0 10px 1px colors.$text;}
 }

@@ -1,0 +1,16 @@
+@use 'styles/ui' as ui;
+@use 'styles/colors' as colors;
+
+#header-container {
+  position:sticky;
+  top: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 calc(ui.$padding / 2);
+  box-sizing: border-box;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 0 0 ui.$radius ui.$radius;
+  background-color: colors.$primary;
+}

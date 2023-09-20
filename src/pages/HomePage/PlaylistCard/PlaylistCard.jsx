@@ -1,12 +1,10 @@
 import {useState} from 'react'
 
 import './PlaylistCard.scss'
-import infoSvg from 'icons/info.svg'
-import Icon from 'components/Icon/Icon'
 
-const PlaylistCard = ({data}) => {
+const PlaylistCard = ({data, onClick}) => {
 
-  const {external_urls, _description, _id, images, name} = data
+  const {external_urls, description, id, images, name} = data
 
   const [isHover, setIsHover] = useState(false)
 
@@ -15,16 +13,10 @@ const PlaylistCard = ({data}) => {
       className={`playlist-card-container ${isHover && 'hover'}`}
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}
+      onClick={onClick}
     >
-      <div className='texts'>
-        <span className='name'>{name}</span>
-      </div>
-      <Icon
-        icon={infoSvg}
-        onClick={window.open(external_urls?.spotify , '_blank')}
-        className='info-icon'
-      />
-      <img src={images[0]?.url} alt='playlist-cover' />
+      <img src={images[0]?.url} alt='playlist-cover' draggable='false' />
+      <span className='name'>{name}</span>
     </div>
   )
 }

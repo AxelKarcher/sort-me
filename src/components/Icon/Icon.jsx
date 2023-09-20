@@ -5,10 +5,10 @@ const Icon = ({disabled, size, icon, onClick, className}) => (
     className={
       'icon-container' +
       (disabled ? ' disabled' : '') +
-      (size ? ` ${size}` : '') +
       (onClick ? ' btn' : '') +
       (className ? ` ${className}` : '')
     }
+    height={50}
     src={icon}
     onClick={disabled ? null : onClick}
   />

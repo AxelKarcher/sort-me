@@ -1,16 +1,14 @@
-// v2.0
-// "body" -> "data"
-// "call" can takes an object with more "data"
-
 import {useState} from 'react'
 import axios from 'axios'
 
-axios.defaults.baseURL = import.meta.env.VITE_API_URL
+axios.defaults.baseURL = import.meta.env.VITE_SPOTIFY_ENDPOINT_BASE
 
 const useAxios = ({
-  infos, params, data: defaultData, debug,
-  headers, onSuccess, onEnd
+  infos, params, data: defaultData,
+  debug, headers, onSuccess, onEnd
 }) => {
+
+  axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage?.getItem('userToken')}`
 
   const [loading, setIsLoading] = useState(false)
   const [error, setError] = useState()
@@ -65,7 +63,15 @@ const useAxios = ({
         if (onSuccess) {onSuccess()}
       })
       .catch((err) => {
-        debug && console.log(`%cERROR ${debugStr} ${err?.response}`, 'color: Crimson')
+        debug && console.log(`%cERROR ${debugStr}`, 'color: Crimson')
+        if (err?.response) {
+          console.log('Error status:', err?.response.status);
+          console.log('Error data:', err?.response.data);
+        } else if (err?.request) {
+          console.err('Request error:', err?.request);
+        } else {
+          console.err('Unknown error:', err?.message);
+        }
         setError(err?.response)
       })
       .finally(() => {

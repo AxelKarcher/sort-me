@@ -1,96 +1,96 @@
-import axios from 'axios'
-import {useState, useEffect} from 'react'
+import {useEffect, useState} from 'react'
 
 import './HomePage.scss'
-import Button from 'components/Button/Button'
 import PlaylistCard from './PlaylistCard/PlaylistCard'
-
-const clientId = '1571f14b8ba047e3936c8e0d6e35addc'
-const clientSecret = '125182fc307c40af93bf9a159b8f4a64'
-const redirectUri = 'http://localhost:3000/'
-const apiEndpointBase = 'https://api.spotify.com/v1/'
-
-const spotifyAuthUri = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=code&redirect_uri=${redirectUri}&scope=playlist-read-private playlist-read-collaborative&state=azertytreza`
+import useAxios from 'hooks/useAxios'
+import Header from 'components/Header/Header'
+import Modal from 'components/Modal/Modal'
+import Button from 'components/Button/Button'
 
 const HomePage = ({}) => {
 
-  const [userCode, setUserCode] = useState()
-  const [userToken, setUserToken] = useState()
-  const [userInfos, setUserInfos] = useState()
-  const [playlists, setPlaylists] = useState([])
+  const [playlistModalInfos, setPlaylistModalInfos] = useState()
+  const [playlistSetup, setPlaylistSetup] = useState({target: undefined, sorters: []})
+  const [resetModal, setResetModal] = useState(false)
 
+  const {res: userInfos, loading: userInfosLoading, call: userInfosCall} = useAxios({
+    infos: {method: 'get', url: 'me'},
+  })
+
+  const {res: playlists, loading: playlistsLoading, call: playlistsCall} = useAxios({
+    infos: {method: 'get', url: `users/${userInfos?.id}/playlists`, dataPath: 'items'},
+  })
+
+  // Starts with getting user infos
+  useEffect(() => {userInfosCall()}, [])
+
+  // If user infos OK, get playlists
   useEffect(() => {
-    let localUserToken = localStorage.getItem('userToken')
-    if (localUserToken !== null) {setUserToken(localUserToken)}
+    if (userInfos === undefined) {return}
 
-    let str = window.location.href
-    let parsedLocation = str?.substring(
-      str?.indexOf('code=') + 5,
-      str?.indexOf('&state')
-    )
-
-    if (parsedLocation?.length > 10) {setUserCode(parsedLocation)}
-  }, [])
-
-  useEffect(() => {if (userCode !== undefined) {getUserToken()}}, [userCode])
-
-  useEffect(() => {
-    if (userToken !== undefined) {
-      localStorage.setItem('userToken', userToken)
-      getuserInfos()
-    }
-  }, [userToken])
-
-  useEffect(() => {
-    if (userInfos !== undefined) {
-      localStorage.setItem('userInfos', userInfos)
-      getUserPlaylists()
-    }
+    localStorage.setItem('userInfos', JSON.stringify(userInfos))
+    playlistsCall()
   }, [userInfos])
 
-  const handleConnect = () => {window.location.href = spotifyAuthUri}
-
-  const getUserToken = () => {
-    axios.post('https://accounts.spotify.com/api/token',
-      {'grant_type': 'authorization_code', 'code': userCode, 'redirect_uri': redirectUri},
-      {headers: {
-        'Authorization': `Basic ${btoa(clientId + ':' + clientSecret)}`,
-        'Content-Type': 'application/x-www-form-urlencoded'
-      }}
-    )
-      .then(({data}) => console.log(setUserToken(data?.access_token)))
+  const editPlaylistSetup = (action) => {
+    if (action === 'target') {
+      setPlaylistSetup((old) => ({...old, target: playlistModalInfos}))
+    } else {
+      setPlaylistSetup((old) => ({
+        ...old,
+        sorters: [...old?.sorters, playlistModalInfos]
+      }))
+    }
+    setPlaylistModalInfos(undefined)
   }
 
-  const getuserInfos = () => {
-    axios({
-      method: 'get',
-      url: `${apiEndpointBase}me`,
-      headers: {'Authorization': `Bearer ${userToken}`}
-    })
-      .then(({data}) => console.log(setUserInfos(data)))
-  }
+  console.log('playlistSetup:', playlistSetup)
 
-  const getUserPlaylists = () => {
-    axios({
-      method: 'get',
-      url: `${apiEndpointBase}users/${userInfos?.id}/playlists`,
-      headers: {'Authorization': `Bearer ${userToken}`}
-    })
-      .then(({data}) => setPlaylists(data?.items))
-  }
-
-  console.log('userInfos:', userInfos)
+  const upperPlaylists = playlists?.filter((playlist) => {
+    return playlist?.id !== playlistSetup?.target?.id
+  })
 
   return (
     <div id='home-page-container'>
-      <span>{userInfos?.display_name}</span>
-      <span>{userInfos?.id}</span>
-      <Button label='Connexion' onClick={handleConnect} />
+      <Header />
+      {/* Target or sort the selected playlist */}
+      <Modal
+        title={playlistModalInfos?.name}
+        visible={playlistModalInfos !== undefined}
+        handleClose={() => setPlaylistModalInfos(undefined)}
+      >
+        <span>Que souhaites-tu en faire ?</span>
+        <div id='playlist-modal-btns'>
+          <Button label='Trier' onClick={() => editPlaylistSetup('target')} />
+          <Button label='Compléter' onClick={() => editPlaylistSetup('sorters')} />
+        </div>
+      </Modal>
+      <Modal
+        title=''
+        visible={resetModal}
+        handleClose={() => setResetModal(false)}
+      >
+
+      </Modal>
       <div id='playlists'>
-        {playlists?.map((playlist, i) => (
-          <PlaylistCard key={i} data ={playlist} />
+        {upperPlaylists?.map((playlist, i) => (
+          <PlaylistCard
+            key={i}
+            data={playlist}
+            onClick={() => setPlaylistModalInfos(playlist)}
+          />
         ))}
       </div>
+      {
+        playlistSetup?.target !== undefined &&
+        <div>
+          <span>Playlist à trier</span>
+          <PlaylistCard
+            data={playlistSetup?.target}
+            onClick={() => setResetModal(true)}
+          />
+        </div>
+      }
     </div>
   )
 }
