@@ -5,9 +5,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: ui.$padding;
-  padding-top: 0;
+  padding-right: ui.$padding;
   box-sizing: border-box;
   gap: ui.$margin;
-  overflow-x: scroll;
+  overflow-y: scroll;
 }

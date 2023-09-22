@@ -2,31 +2,12 @@
 @use 'styles/ui' as ui;
 
 .icon-container {
-  height: 15px;
-  width: 15px;
-  filter: drop-shadow(0 0 0.2rem colors.$shadow);
-  transition: all ui.$durationFast;
-  background-color: red;
+  filter: drop-shadow(0 0 8px colors.$shadow);
+  transition: filter ui.$durationFast;
 }
 
-.icon-container.btn {
+.icon-container.clickable {
   cursor: pointer;
 
-  &:hover {filter: drop-shadow(0 0 0.2rem colors.$text);}
-}
-
-.icon-container.btn.medium {
-  height: 150px;
-  width: 150px;
-}
-
-.icon-container.btn.large {
-  height: 300px;
-  width: 300px;
-}
-
-.icon-container.btn.disabled {
-  cursor: not-allowed;
-
-  &:hover {filter: drop-shadow(0 0 0.2rem colors.$shadow)}
+  &:hover {filter: drop-shadow(0 0 8px colors.$shadowHover);}
 }

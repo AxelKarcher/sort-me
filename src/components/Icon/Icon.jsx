@@ -1,16 +1,23 @@
 import './Icon.scss'
 
-const Icon = ({disabled, size, icon, onClick, className}) => (
-  <img
-    className={
-      'icon-container' +
-      (disabled ? ' disabled' : '') +
-      (onClick ? ' btn' : '') +
-      (className ? ` ${className}` : '')
-    }
-    src={icon}
-    onClick={disabled ? null : onClick}
-  />
-)
+const Icon = ({
+  disabled, size = 50, icon,
+  onClick, className
+}) => {
+  return (
+    <img
+      className={`
+        icon-container
+        ${disabled && ' disabled'}
+        ${onClick && ' clickable'}
+        ${className && ` ${className}`}
+      `}
+      src={icon}
+      height={size}
+      onClick={disabled ? null : onClick}
+      alt='icon'
+    />
+  )
+}
 
 export default Icon

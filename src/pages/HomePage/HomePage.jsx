@@ -10,13 +10,14 @@ import PlaylistPicker from 'components/PlaylistPicker/PlaylistPicker'
 import TrackController from 'components/TrackController/TrackController'
 import tracksMock from 'config/tracks'
 import leftSimpleArrow from 'icons/leftSimpleArrow.svg'
+import Icon from 'components/Icon/Icon'
+import funnelIcon from 'icons/funnel.svg'
 
 const HomePage = ({}) => {
 
-  const [currSetup, setCurrSetup] = useState({target: undefined, sorters: []})
+  const [target, setTarget] = useState()
   const [targetChoiceModal, setTargetChoiceModal] = useState(false)
   const [currTrack, setCurrTrack] = useState(0)
-  const [playlistToAdd, setPlaylistToAdd] = useState()
 
   const {res: userInfos, error: userInfosErr, loading: userInfosLoading, call: userInfosCall} = useAxios({
     infos: {method: 'get', url: '/me'},
@@ -27,21 +28,7 @@ const HomePage = ({}) => {
   })
 
   const {res: tracks, loading: tracksLoading, call: tracksCall} = useAxios({
-    infos: {
-      method: 'get',
-      url: `/playlists/${currSetup?.target?.id}/tracks?limit=20&offset=0`
-    },
-  })
-
-  const {res: addRes, loading: addLoading, call: addCall} = useAxios({
-    infos: {
-      method: 'post',
-      url: `/playlists/${playlistToAdd?.id}/tracks`
-    },
-    data: {
-      uris: `spotify:track:${tracksMock?.items[currTrack]?.track?.id}`
-    },
-    debug: true
+    infos: {method: 'get', url: `/playlists/${target?.id}/tracks?limit=20&offset=0`},
   })
 
   // Starts with getting user infos
@@ -63,34 +50,15 @@ const HomePage = ({}) => {
   }, [userInfos])
 
   // If target selected, get some tracks
-  // useEffect(() => {if (currSetup?.target !== undefined) {tracksCall()}}, [currSetup])
+  useEffect(() => {
+    if (target !== undefined) {
+      // tracksCall()
+      setTargetChoiceModal(false)
+    }
+  }, [target])
 
   // Reset curr track index if new data arrives
   useEffect(() => {if (tracks !== undefined) {setCurrTrack(0)}}, [tracks])
-
-  useEffect(() => {
-    if (playlistToAdd !== undefined) {
-      addCall()
-      setPlaylistToAdd(undefined)
-    }
-  }, [playlistToAdd])
-
-  const editCurrSetup = (action, data) => {
-    if (action === 'target') {
-      setCurrSetup((old) => ({...old, target: data}))
-      setTargetChoiceModal(false)
-    } else {
-      setCurrSetup((old) => ({...old, sorters: [...old?.sorters, data]}))
-    }
-  }
-
-  const handleEditCurrTrack = (action) => {
-    if (action === 'prev' && currTrack > 0) {
-      setCurrTrack((old) => old - 1)
-    } else if (action === 'next' && currTrack < tracksMock?.items?.length - 1) {
-      setCurrTrack((old) => old + 1)
-    }
-  }
 
   const progress = `${tracksMock?.offset} - ${(tracksMock?.offset + tracksMock?.limit)} / ${tracksMock?.total}`
 
@@ -105,33 +73,37 @@ const HomePage = ({}) => {
       >
         <PlaylistPicker
           playlists={playlists}
-          onPlaylistClick={(e) => editCurrSetup('target', e)}
+          onPlaylistClick={(e) => setTarget(e)}
         />
       </Modal>
       <PlaylistsScroller
         playlists={playlists}
-        sorters={currSetup?.sorters}
-        onPlaylistClick={(e) => setPlaylistToAdd(e)}
-        onSorterClick={(e) => editCurrSetup('sorter', e)}
+        trackUri={tracksMock?.items[currTrack]?.track?.uri}
       />
       <div id='sort-area'>
         {
           currTrack !== undefined &&
           <TrackController
             data={tracksMock?.items[currTrack]}
-            handleArrowClick={handleEditCurrTrack}
+            onPrevClick={currTrack > 0 ? () => setCurrTrack((old) => old - 1) : null}
+            onNextClick={
+              currTrack < tracksMock?.items?.length - 1 ?
+              () => setCurrTrack((old) => old + 1) :
+              null
+            }
           />
-          }
+        }
         <div id='sort-card'>
           <PlaylistCard
-            data={currSetup?.target}
+            data={target}
             onClick={() => setTargetChoiceModal(true)}
-            emptyLabel='Trier'
+            emptyLabel='Playlist à trier'
+            icon={funnelIcon}
           />
           <span id='data-control'>
-            <img src={leftSimpleArrow} height={20} alt='left' />
+            <Icon icon={leftSimpleArrow} size={20} />
             <span id='progress'>{progress}</span>
-            <img id='right-arrow' src={leftSimpleArrow} height={20} alt='right' />
+            <Icon className='right-arrow' icon={leftSimpleArrow} size={20} />
           </span>
         </div>
       </div>

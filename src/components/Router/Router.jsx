@@ -5,7 +5,6 @@ import HomePage from 'pages/HomePage/HomePage'
 import './Router.scss'
 
 const Router = () => {
-
   return (
     <div id='router-container'>
       <BrowserRouter>

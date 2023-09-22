@@ -1,8 +1,9 @@
 import {useEffect, useState} from 'react'
 
 import './AuthPage.scss'
-import Button from 'components/Button/Button'
+import Icon from 'components/Icon/Icon'
 import useAxios from 'hooks/useAxios'
+import spotifyIcon from 'icons/spotify.svg'
 
 const LENGTH_CODE_WORD = 5
 
@@ -55,7 +56,7 @@ const AuthPage = ({}) => {
 
   return (
     <div id='auth-page-container'>
-      <Button label='Connexion' onClick={() => navigateToSpotifyAuth()} />
+      <Icon icon={spotifyIcon} onClick={navigateToSpotifyAuth} size={300} />
     </div>
   )
 }

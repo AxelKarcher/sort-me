@@ -10,12 +10,7 @@
   justify-content: space-between;
   padding: calc(ui.$padding / 3) calc(ui.$padding / 2);
   box-sizing: border-box;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  box-shadow: 0 0 8px colors.$shadow;
   border-radius: 0 0 ui.$radius ui.$radius;
   background-color: colors.$primary;
-
-  img {
-    cursor: pointer;
-    filter: drop-shadow(0px 0px 5px colors.$shadow);
-  }
 }

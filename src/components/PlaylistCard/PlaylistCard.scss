@@ -2,32 +2,51 @@
 @use 'styles/colors' as colors;
 
 .playlist-card-container {
-  width: fit-content;
+  position: relative;
   height: 90px;
+  width: 300px;
   background-color: colors.$primary;
   border-radius: ui.$radius;
+  overflow: hidden;
   display: flex;
   align-items: center;
   gap: ui.$margin;
   padding-right: ui.$padding;
-  box-sizing: border-box;
   border: 3px solid colors.$text;
+  box-sizing: border-box;
   cursor: pointer;
-  transition: transform ui.$durationFast;
   user-select: none;
 
-  .text {
-    text-align: center;
-    // font-size: 16px;
-    font-weight: bold;
-    text-align: center;
+  &:hover {.album-cover {filter: grayscale(0%);}}
+
+  .close-icon {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    height: 18px;
+    filter: drop-shadow(0 0 5px colors.$shadow);
+    transition: filter ui.$durationFast;
+
+    &:hover {filter: drop-shadow(0 0 5px colors.$text);}
   }
 
+  .text {
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .text.padding-left {padding-left: ui.$padding;}
+
   .album-cover {
-    border-radius: calc(ui.$radius / 2) 0 0 calc(ui.$radius / 2);
     height: 100%;
     aspect-ratio: 1/1;
     object-fit: cover;
+    filter: grayscale(100%);
+    transition: filter ui.$durationFast;
   }
 
   .empty-label {
@@ -36,8 +55,15 @@
   }
 }
 
-.playlist-card-container.full-width {width: 100%;}
+.playlist-card-container.full-width {
+  max-width: 100%;
+  width: 100%;
+
+  .text {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+  }
+}
 
 .playlist-card-container.empty {padding-left: ui.$padding;}
-
-.playlist-card-container.hover {transform: scale(.95);}

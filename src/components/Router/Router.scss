@@ -14,13 +14,13 @@
   }
 
   ::-webkit-scrollbar-track {
-    background: colors.$secondary;
-    border-radius: 10px;
+    background: yellow;
+    // border-radius: 10px;
   }
 
   ::-webkit-scrollbar-thumb {
-    background: colors.$primary;
-    border-radius: 10px;
+    background: purple;
+    // border-radius: 10px;
   }
 
   ::selection {

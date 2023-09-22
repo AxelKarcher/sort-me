@@ -12,9 +12,7 @@
   background-color: colors.$cloudy;
   z-index: 100;
 
-  .modal-panel {
-    max-height: 75vh;
-  }
+  .modal-panel {max-height: 75vh;}
 }
 
 .modal-container.not-visible {display: none;}

@@ -2,9 +2,9 @@
 @use 'styles/ui' as ui;
 
 .spinner-container {
-  height: 40px;
-  width: 40px;
-  border: 2px solid transparent;
+  height: 25px;
+  width: 25px;
+  border: 10px solid transparent;
   border-radius: 50%;
   animation: loading 1s ease infinite;
   border-top-color: colors.$text;
