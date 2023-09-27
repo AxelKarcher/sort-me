@@ -4,12 +4,15 @@ import './AuthPage.scss'
 import Icon from 'components/Icon/Icon'
 import useAxios from 'hooks/useAxios'
 import spotifyIcon from 'icons/spotify.svg'
+import useAuth from 'hooks/useAuth'
 
 const LENGTH_CODE_WORD = 5
 
 const AuthPage = ({}) => {
 
   const [userCode, setUserCode] = useState()
+
+  const {getUserToken, setUserToken} = useAuth()
 
   const {res: userTokenRes, loading: userTokenLoading, call: userTokenCall} = useAxios({
     infos: {
@@ -32,8 +35,8 @@ const AuthPage = ({}) => {
   // Check window url for redirect spotify user code
   useEffect(() => {
     // Checks if user token is already in local storage
-    let localUserToken = localStorage.getItem('userToken')
-    if (localUserToken !== null) {window.location.href = '/home'}
+
+    if (getUserToken() !== null) {window.location.href = '/home'}
 
     let str = window.location.href
     let parsedLocation = str?.substring(str?.indexOf('code=') + LENGTH_CODE_WORD, str?.indexOf('&state'))
@@ -45,8 +48,7 @@ const AuthPage = ({}) => {
   useEffect(() => {
     if (userTokenRes === undefined) {return}
 
-    localStorage.setItem('userToken', userTokenRes)
-    window.location.href = '/home'
+    setUserToken(userTokenRes)
   }, [userTokenRes])
 
   // If user code is OK, asking for user token

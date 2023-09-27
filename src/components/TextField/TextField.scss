@@ -21,7 +21,7 @@
     color: colors.$textBis;
     border: 3px solid transparent;
     box-sizing: border-box;
-    box-shadow: 0 0 10px 1px colors.$shadow;
+    box-shadow: 0 0 colors.$shadowAmount colors.$shadow;
     transition: all ui.$durationFast;
   }
 }
@@ -34,7 +34,7 @@
 
 .textfield-container.focused {.input {
   border-color: colors.$primary;
-  box-shadow: 0 0 10px 1px colors.$text;
+  box-shadow: 0 0 colors.$shadowAmount colors.$text;
 }}
 
 .textfield-container.no-style {

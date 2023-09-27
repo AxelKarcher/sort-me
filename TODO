@@ -1,13 +1,18 @@
-- mettre les spinners
-- fix scroll en haut
-- implémenter le next et prev des tracks
-- fix hover des icons
-- pouvoir créer une playlist
-- background color global à chier
-- contrôles aux clavier
-- shadow aux playlist card coupées par la zone scroll (retirées pour l'instant)
-- meilleur audio player
-- target devrait pas pouvoir être sorter
+STYLE
+- passer aux icons react-icons (ou autre lib)
 - extraire couleur dominante de la cover
+- background color global à chier
 - scrollbars de PlaylistsScroller besoin padding bords
-- rework PlaylistCard: image en cover en flou qui se colorie au hover
+- border radius des image des PlaylistCard un peu goofy
+- ombres des PlaylistCard coupées dans le Picker
+
+FEATURE
+- pouvoir créer une playlist
+- implémenter le next et prev des tracks
+- mettre les spinners
+- contrôles aux clavier
+- meilleur audio player
+- rework navigation ?
+
+FIX
+- target devrait pas pouvoir être sorter

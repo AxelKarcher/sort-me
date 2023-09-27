@@ -12,12 +12,16 @@ import tracksMock from 'config/tracks'
 import leftSimpleArrow from 'icons/leftSimpleArrow.svg'
 import Icon from 'components/Icon/Icon'
 import funnelIcon from 'icons/funnel.svg'
+import useAuth from 'hooks/useAuth'
 
 const HomePage = ({}) => {
 
   const [target, setTarget] = useState()
   const [targetChoiceModal, setTargetChoiceModal] = useState(false)
   const [currTrack, setCurrTrack] = useState(0)
+  const [tracksCallInfos, setTracksCallInfos] = useState({limit: 20, offset: 0})
+
+  const {disconnect, setUserInfos} = useAuth()
 
   const {res: userInfos, error: userInfosErr, loading: userInfosLoading, call: userInfosCall} = useAxios({
     infos: {method: 'get', url: '/me'},
@@ -28,24 +32,22 @@ const HomePage = ({}) => {
   })
 
   const {res: tracks, loading: tracksLoading, call: tracksCall} = useAxios({
-    infos: {method: 'get', url: `/playlists/${target?.id}/tracks?limit=20&offset=0`},
+    infos: {
+      method: 'get',
+      url: `/playlists/${target?.id}/tracks?limit=${tracksCallInfos?.limit}&offset=${tracksCallInfos?.offset}`
+    },
   })
 
   // Starts with getting user infos
   useEffect(() => {userInfosCall()}, [])
 
-  useEffect(() => {
-    if (userInfosErr !== undefined) {
-      localStorage.removeItem('userToken')
-      window.location.href = '/auth'
-    }
-  }, [userInfosErr])
+  useEffect(() => {if (userInfosErr !== undefined) {disconnect()}}, [userInfosErr])
 
   // If user infos OK, get playlists
   useEffect(() => {
     if (userInfos === undefined) {return}
 
-    localStorage.setItem('userInfos', JSON.stringify(userInfos))
+    setUserInfos(userInfos)
     playlistsCall()
   }, [userInfos])
 
@@ -68,13 +70,10 @@ const HomePage = ({}) => {
       {/* Select the target */}
       <Modal
         title='Choisir la playlist à trier'
-        visible={targetChoiceModal}
+        isVisible={targetChoiceModal}
         handleClose={() => setTargetChoiceModal(false)}
       >
-        <PlaylistPicker
-          playlists={playlists}
-          onPlaylistClick={(e) => setTarget(e)}
-        />
+        <PlaylistPicker playlists={playlists} onPlaylistClick={(e) => setTarget(e)} />
       </Modal>
       <PlaylistsScroller
         playlists={playlists}
@@ -99,6 +98,7 @@ const HomePage = ({}) => {
             onClick={() => setTargetChoiceModal(true)}
             emptyLabel='Playlist à trier'
             icon={funnelIcon}
+            isColored
           />
           <span id='data-control'>
             <Icon icon={leftSimpleArrow} size={20} />

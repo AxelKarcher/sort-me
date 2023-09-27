@@ -2,12 +2,14 @@
 @use 'styles/ui' as ui;
 
 .icon-container {
-  filter: drop-shadow(0 0 8px colors.$shadow);
+  filter: drop-shadow(0 0 colors.$shadowAmount colors.$shadow);
   transition: filter ui.$durationFast;
 }
 
 .icon-container.clickable {
   cursor: pointer;
 
-  &:hover {filter: drop-shadow(0 0 8px colors.$shadowHover);}
+  &:hover {
+    filter: drop-shadow(0 0 colors.$shadowAmount colors.$shadowHover);
+  }
 }

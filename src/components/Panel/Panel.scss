@@ -10,10 +10,10 @@
   border-radius: ui.$radius;
   padding: ui.$padding;
   box-sizing: border-box;
-  box-shadow: 0 0 10px 1px colors.$shadow;
+  box-shadow: 0 0 colors.$shadowAmount colors.$shadow;
   transition: all ui.$durationFast;
 
   #title {font-weight: bold;}
 }
 
-.panel-container.no-shadows {box-shadow: 0 0 10px 1px transparent;}
+.panel-container.no-shadows {box-shadow: 0 0 colors.$shadowAmount transparent;}

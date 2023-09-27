@@ -16,6 +16,7 @@ const Icon = ({
       height={size}
       onClick={disabled ? null : onClick}
       alt='icon'
+      draggable='false'
     />
   )
 }

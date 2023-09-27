@@ -3,11 +3,9 @@
 
 .playlist-card-container {
   position: relative;
-  height: 90px;
-  width: 300px;
+  height: 75px;
   background-color: colors.$primary;
   border-radius: ui.$radius;
-  overflow: hidden;
   display: flex;
   align-items: center;
   gap: ui.$margin;
@@ -16,27 +14,22 @@
   box-sizing: border-box;
   cursor: pointer;
   user-select: none;
+  box-shadow: 0 0 colors.$shadowAmount colors.$shadow;
+  transition: box-shadow ui.$durationFast;
 
-  &:hover {.album-cover {filter: grayscale(0%);}}
+  &:hover {box-shadow: 0 0 colors.$shadowAmount colors.$shadowHover;}
 
   .close-icon {
     position: absolute;
     top: 2px;
     right: 2px;
     height: 18px;
-    filter: drop-shadow(0 0 5px colors.$shadow);
-    transition: filter ui.$durationFast;
-
-    &:hover {filter: drop-shadow(0 0 5px colors.$text);}
   }
 
   .text {
     width: 100%;
-    text-align: center;
     font-weight: bold;
     white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
   }
 
   .text.padding-left {padding-left: ui.$padding;}
@@ -44,8 +37,8 @@
   .album-cover {
     height: 100%;
     aspect-ratio: 1/1;
-    object-fit: cover;
     filter: grayscale(100%);
+    border-radius: calc(ui.$radius / 2) 0 0 calc(ui.$radius / 2);
     transition: filter ui.$durationFast;
   }
 
@@ -67,3 +60,5 @@
 }
 
 .playlist-card-container.empty {padding-left: ui.$padding;}
+
+.playlist-card-container.colored {.album-cover {filter: grayscale(0%);}}

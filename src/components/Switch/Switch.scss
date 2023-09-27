@@ -5,8 +5,7 @@
   display: flex;
   border-radius: ui.$radius;
   background-color: colors.$primary;
-  box-shadow: 0 0 10px 1px colors.$shadow;
-  // font-size: 18px;
+  box-shadow: 0 0 colors.$shadowAmount colors.$shadow;
   font-weight: bold;
   overflow: hidden;
   cursor: pointer;

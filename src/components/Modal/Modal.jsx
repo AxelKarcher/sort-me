@@ -2,7 +2,7 @@ import './Modal.scss'
 import Panel from 'components/Panel/Panel'
 
 const Modal = ({
-  visible, handleClose,
+  isVisible, handleClose,
   children, className, title
 }) => {
 
@@ -14,7 +14,7 @@ const Modal = ({
       className={
         'modal-container' +
         ` ${className}` +
-        (visible ? '' : ' not-visible')
+        (isVisible ? '' : ' not-visible')
       }
     >
       <Panel className='modal-panel' title={title} onClick={handleClick}>

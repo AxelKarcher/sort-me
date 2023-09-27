@@ -1,6 +1,8 @@
 import {useState} from 'react'
 import axios from 'axios'
 
+import useAuth from './useAuth'
+
 axios.defaults.baseURL = import.meta.env.VITE_SPOTIFY_ENDPOINT_BASE
 
 const useAxios = ({
@@ -8,7 +10,8 @@ const useAxios = ({
   debug, headers, onSuccess, onEnd
 }) => {
 
-  axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage?.getItem('userToken')}`
+  const {getUserToken} = useAuth()
+  axios.defaults.headers.common['Authorization'] = `Bearer ${getUserToken()}`
 
   const [loading, setIsLoading] = useState(false)
   const [error, setError] = useState()

@@ -9,14 +9,11 @@
   .arrow {
     max-height: 200px;
     height: 20vw;
-    cursor: pointer;
-    filter: drop-shadow(0px 0px 5px colors.$shadow);
-    transition: all ui.$durationFast;
   }
 
   .arrow.disabled {
     cursor: not-allowed;
-    filter: drop-shadow(0px 0px 5px transparent);
+    filter: drop-shadow(0px 0px colors.$shadowAmount transparent);
   }
 
   #infos {
@@ -38,7 +35,7 @@
   }
 
   #audio-player {
-    filter: drop-shadow(0px 0px 5px colors.$shadow);
+    filter: drop-shadow(0px 0px colors.$shadowAmount colors.$shadow);
   }
 
   .right-icon {transform: rotate(180deg);}

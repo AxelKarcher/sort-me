@@ -20,7 +20,8 @@ const TrackController = ({data, onPrevClick, onNextClick}) => {
   return (
     <div id='track-controller-container'>
       <Icon
-        className={`arrow ${!onPrevClick && 'disabled'}`}
+        className={`
+        arrow ${!onPrevClick && 'disabled'}`}
         icon={leftPlainArrow}
         size={300}
         onClick={onPrevClick}
@@ -32,7 +33,11 @@ const TrackController = ({data, onPrevClick, onNextClick}) => {
         <audio id='audio-player' controls autoPlay={true} src={audio} ref={audioRef} />
       </div>
       <Icon
-        className={`arrow right-icon ${!onNextClick && 'disabled'}`}
+        className={`
+          arrow
+          right-icon
+          ${!onNextClick && ' disabled'}
+        `}
         icon={leftPlainArrow}
         size={300}
         onClick={onNextClick}

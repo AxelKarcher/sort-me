@@ -4,9 +4,11 @@ import './PlaylistsScroller.scss'
 import PlaylistCard from 'components/PlaylistCard/PlaylistCard'
 import PlaylistPicker from 'components/PlaylistPicker/PlaylistPicker'
 import Modal from 'components/Modal/Modal'
+import CreatePlaylistModal from './CreatePlaylistModal/CreatePlaylistModal'
 
 const PlaylistsScroller = ({playlists, trackUri}) => {
 
+  const [createPlaylistModal, setCreatePlaylistModal] = useState(false)
   const [sortersChoiceModal, setSortersChoiceModal] = useState(false)
   const [sorters, setSorters] = useState([])
 
@@ -33,16 +35,23 @@ const PlaylistsScroller = ({playlists, trackUri}) => {
       {/* Select the sorters */}
       <Modal
         title='Ajouter des possibilités'
-        visible={sortersChoiceModal}
+        isVisible={sortersChoiceModal}
         handleClose={() => setSortersChoiceModal(false)}
       >
         <PlaylistPicker playlists={possibleSorters} onPlaylistClick={(e) => addSorter(e)} />
       </Modal>
+      {/* Create playlist modal */}
+      <CreatePlaylistModal
+        isVisible={createPlaylistModal}
+        handleClose={() => setCreatePlaylistModal(false)}
+      />
       {/* Playlist card for adding sorters */}
-      <>{
-        possibleSorters?.length > 0 &&
-        <PlaylistCard onClick={() => setSortersChoiceModal(true)} emptyLabel='Possibilité' />
-      }</>
+      <>
+        {
+          possibleSorters?.length > 0 &&
+          <PlaylistCard onClick={() => setSortersChoiceModal(true)} emptyLabel='Possibilité' />
+        }
+      </>
       {sorters?.map((playlist, i) => (
         <PlaylistCard
           key={i}
@@ -51,6 +60,11 @@ const PlaylistsScroller = ({playlists, trackUri}) => {
           trackUri={trackUri}
         />
       ))}
+      {/* Create playlist card */}
+      <PlaylistCard
+        onClick={() => setCreatePlaylistModal(true)}
+        emptyLabel='Créer une playlist'
+      />
     </div>
   )
 }
