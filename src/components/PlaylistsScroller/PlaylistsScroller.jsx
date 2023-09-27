@@ -6,7 +6,7 @@ import PlaylistPicker from 'components/PlaylistPicker/PlaylistPicker'
 import Modal from 'components/Modal/Modal'
 import CreatePlaylistModal from './CreatePlaylistModal/CreatePlaylistModal'
 
-const PlaylistsScroller = ({playlists, trackUri}) => {
+const PlaylistsScroller = ({playlists, trackUri, onCreateSuccess}) => {
 
   const [createPlaylistModal, setCreatePlaylistModal] = useState(false)
   const [sortersChoiceModal, setSortersChoiceModal] = useState(false)
@@ -44,6 +44,7 @@ const PlaylistsScroller = ({playlists, trackUri}) => {
       <CreatePlaylistModal
         isVisible={createPlaylistModal}
         handleClose={() => setCreatePlaylistModal(false)}
+        onCreateSuccess={onCreateSuccess}
       />
       {/* Playlist card for adding sorters */}
       <>

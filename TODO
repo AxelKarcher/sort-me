@@ -3,11 +3,10 @@ STYLE
 - extraire couleur dominante de la cover
 - background color global à chier
 - scrollbars de PlaylistsScroller besoin padding bords
-- border radius des image des PlaylistCard un peu goofy
+- border radius des image des PlaylistCard un peu goofy ?
 - ombres des PlaylistCard coupées dans le Picker
 
 FEATURE
-- pouvoir créer une playlist
 - implémenter le next et prev des tracks
 - mettre les spinners
 - contrôles aux clavier

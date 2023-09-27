@@ -1,3 +1,11 @@
-.create-playlist-modal-container {
+@use 'styles/ui' as ui;
 
+.create-playlist-modal-container {
+  .bottom-btns {
+    width: 100%;
+    display: flex;
+    gap: ui.$margin;
+
+    & > * {flex: 1;}
+  }
 }

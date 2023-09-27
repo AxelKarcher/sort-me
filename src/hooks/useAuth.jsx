@@ -19,7 +19,7 @@ const useAuth = () => {
   }
 
   const getUserInfos = () => {
-    return localStorage.getItem('userInfos')
+    return JSON.parse(localStorage.getItem('userInfos'))
   }
 
   return {

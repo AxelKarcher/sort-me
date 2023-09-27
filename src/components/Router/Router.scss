@@ -1,10 +1,11 @@
 @use 'styles/colors.scss' as colors;
+@use 'styles/fontSizes.scss' as fontSizes;
 
 #router-container {
   width: 100vw;
   height: 100vh;
   color: colors.$text;
-  font-size: calc(15px + 0.390625vw);
+  font-size: fontSizes.$normal;
   background-color: colors.$background;
   text-shadow: 0 0 colors.$shadowAmount colors.$shadow;
 

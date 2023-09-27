@@ -78,6 +78,7 @@ const HomePage = ({}) => {
       <PlaylistsScroller
         playlists={playlists}
         trackUri={tracksMock?.items[currTrack]?.track?.uri}
+        onCreateSuccess={() => playlistsCall()}
       />
       <div id='sort-area'>
         {

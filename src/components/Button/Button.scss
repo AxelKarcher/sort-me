@@ -8,9 +8,8 @@
   background-color: colors.$primary;
   border: 3px solid transparent;
   font-weight: bold;
-  // font-size: 24px;
   cursor: pointer;
-  box-shadow: 0 0 10px 1px colors.$shadow;
+  box-shadow: 0 0 colors.$shadowAmount colors.$shadow;
   border: 2px solid transparent;
   padding: 0 5px;
   box-sizing: border-box;
@@ -18,13 +17,13 @@
   user-select: none;
   text-align: center;
 
-  &:hover {box-shadow: 0 0 10px 1px colors.$text;}
+  &:hover {box-shadow: 0 0 colors.$shadowAmount colors.$shadowHover;}
 }
 
 .button-container.no-shadow {
-  box-shadow: 0 0 10px 1px transparent;
+  box-shadow: 0 0 colors.$shadowAmount transparent;
 
-  &:hover {box-shadow: 0 0 10px 1px transparent;}
+  &:hover {box-shadow: 0 0 colors.$shadowAmount transparent;}
 }
 
 .button-container.full-width {width: 100%;}
@@ -33,6 +32,4 @@
   background-color: colors.$disabled2;
   color: colors.$disabled1;
   cursor: not-allowed;
-
-  &:hover {box-shadow: 0 0 10px 1px colors.$shadow;}
 }
