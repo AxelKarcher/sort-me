@@ -3,14 +3,14 @@
 
 .playlist-card-container {
   position: relative;
-  height: 75px;
+  height: 65px;
   background-color: colors.$primary;
   border-radius: ui.$radius;
   display: flex;
   align-items: center;
   gap: ui.$margin;
   padding-right: ui.$padding;
-  border: 3px solid colors.$text;
+  border: 2px solid colors.$text;
   box-sizing: border-box;
   cursor: pointer;
   user-select: none;
@@ -18,6 +18,12 @@
   transition: box-shadow ui.$durationFast;
 
   &:hover {box-shadow: 0 0 colors.$shadowAmount colors.$shadowHover;}
+
+  .add-spinner {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+  }
 
   .close-icon {
     position: absolute;
@@ -30,6 +36,7 @@
     width: 100%;
     font-weight: bold;
     white-space: nowrap;
+    text-overflow: ellipsis;
   }
 
   .text.padding-left {padding-left: ui.$padding;}

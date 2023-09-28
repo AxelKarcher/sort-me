@@ -13,7 +13,11 @@
   @keyframes loading {to {transform: rotate(1turn);}}
 }
 
-.spinner-container.margin-top {margin-top: ui.$margin;}
+.spinner-container.small {
+  height: 15px;
+  width: 15px;
+  border-width: 3px;
+}
 
 .spinner-container.medium {
   height: 60px;
@@ -25,4 +29,9 @@
   height: 120px;
   width: 120px;
   border-width: 8px;
+}
+
+.spinner-container.inverted {
+  border-top-color: colors.$textBis;
+  border-bottom-color: colors.$textBis;
 }

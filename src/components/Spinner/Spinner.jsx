@@ -1,12 +1,13 @@
 import './Spinner.scss'
 
-const Spinner = ({size, needMarginTop}) => {
+const Spinner = ({size, className, inverted}) => {
   return (
     <div
       className={`
         spinner-container
-        ${(needMarginTop && ' margin-top')}
-        ${(size && ' size')}
+        ${(size && ` ${size}`)}
+        ${(inverted && ' inverted')}
+        ${className}
       `}
     />
   )

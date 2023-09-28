@@ -66,7 +66,7 @@ const HomePage = ({}) => {
 
   return (
     <div id='home-page-container'>
-      <Header userInfos={userInfos} />
+      <Header />
       {/* Select the target */}
       <Modal
         title='Choisir la playlist à trier'

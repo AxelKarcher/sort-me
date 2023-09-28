@@ -1,8 +1,8 @@
 import {useState} from 'react'
 
-import selectSvg from 'icons/select.svg'
+import selectIcon from 'icons/select.svg'
 import './PlaylistCard.scss'
-import closeSvg from 'icons/close.svg'
+import closeIcon from 'icons/close.svg'
 import useAxios from 'hooks/useAxios'
 import Icon from 'components/Icon/Icon'
 import Spinner from 'components/Spinner/Spinner'
@@ -26,13 +26,12 @@ const PlaylistCard = ({
   // tmp
   const tmp = () => {
     setAddLoading(true)
-    setTimeout(() => {
-      setAddLoading(false)
-    }, 1000)
+    setTimeout(() => {setAddLoading(false)}, 1000)
   }
 
   const handleOnClose = (e) => {
     onClose()
+    // Prevents click on playlist under this one
     e.stopPropagation()
   }
 
@@ -52,37 +51,32 @@ const PlaylistCard = ({
       onClick={trackUri ? tmp : onClick} // replace tmp par addCall
     >
       {
-        data ?
+        data
+        ?
         <>
           {
-            <>
-              {
-                data?.images[0]?.url &&
-                <img
-                  className='album-cover'
-                  src={data?.images[0]?.url}
-                  alt='playlist cover'
-                  draggable='false'
-                />
-              }
-              {
-                addLoading ?
-                <Spinner /> :
-                <span className={`text ${isImageNull && 'padding-left'}`}>{data?.name}</span>
-              }
-              {
-                !addLoading && onClose &&
-                <Icon className='close-icon' onClick={handleOnClose} icon={closeSvg} />
-              }
-            </>
+            data?.images[0]?.url &&
+            <img
+              className='album-cover'
+              src={data?.images[0]?.url}
+              alt='playlist cover'
+              draggable='false'
+            />
           }
-        </> :
-        <>
-          <img src={icon || selectSvg} height={40} alt='add icon' />
+          <span className={`text ${isImageNull && 'padding-left'}`}>{data?.name}</span>
           {
-            emptyLabel &&
-            <span className='text empty-label'>{emptyLabel}</span>
+            addLoading
+            ?
+            <Spinner className='add-spinner' size='small' inverted />
+            :
+            onClose &&
+            <Icon className='close-icon' onClick={handleOnClose} icon={closeIcon} />
           }
+        </>
+        :
+        <>
+          <img src={icon || selectIcon} height={40} alt='add icon' />
+          {emptyLabel && <span className='text empty-label'>{emptyLabel}</span>}
         </>
       }
     </div>

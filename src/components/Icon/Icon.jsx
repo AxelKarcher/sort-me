@@ -8,8 +8,8 @@ const Icon = ({
     <img
       className={`
         icon-container
-        ${disabled && ' disabled'}
         ${onClick && ' clickable'}
+        ${(disabled || onClick === null) && ' disabled'}
         ${className && ` ${className}`}
       `}
       src={icon}

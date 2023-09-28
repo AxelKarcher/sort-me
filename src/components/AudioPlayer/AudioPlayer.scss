@@ -1,0 +1,12 @@
+@use 'styles/ui' as ui;
+
+#audio-player-container {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: ui.$margin;
+
+  #audio-tag {all: unset;}
+
+  .next-icon {transform: rotate(180deg);}
+}

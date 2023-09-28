@@ -9,8 +9,12 @@
   align-items: center;
   justify-content: space-between;
   padding: calc(ui.$padding / 3) calc(ui.$padding / 2);
+  border: 2px solid black;
+  border-top: 0;
   box-sizing: border-box;
   box-shadow: 0 0 colors.$shadowAmount colors.$shadow;
   border-radius: 0 0 ui.$radius ui.$radius;
   background-color: colors.$primary;
+
+  #title-text {font-weight: bold;}
 }

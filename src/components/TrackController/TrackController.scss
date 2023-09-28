@@ -6,26 +6,19 @@
   align-items: center;
   justify-content: space-between;
 
-  .arrow {
-    max-height: 200px;
-    height: 20vw;
-  }
-
-  .arrow.disabled {
-    cursor: not-allowed;
-    filter: drop-shadow(0px 0px colors.$shadowAmount transparent);
-  }
-
   #infos {
+    width: 100%;
     display: flex;
     align-items: center;
     flex-direction: column;
     gap: calc(ui.$margin / 2);
 
     #cover {
-      max-height: 200px;
-      height: 20vw;
+      min-width: 250px;
+      width: 20vw;
       border-radius: ui.$radius;
+      border: 2px solid black;
+      box-sizing: border-box;
     }
 
     #artist-text {font-weight: bold;}
