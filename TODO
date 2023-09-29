@@ -1,19 +1,19 @@
 STYLE
+- rework Modal (titre séparé du children)
+  - ombres des PlaylistCard coupées dans le Picker
 - passer aux icons react-icons (ou autre lib)
 - extraire couleur dominante de la cover
 - scrollbars de PlaylistsScroller besoin padding bords
 - border radius des image des PlaylistCard un peu goofy ?
-- ombres des PlaylistCard coupées dans le Picker
-- rework Modal (titre séparé du children)
 
 FEATURE
-- déployer
 - rework en context
-- paufiner historique
+- switcher automatiquement les env
 - field pour rentrer direct la page de tracks
 - slider pour le volume pour AudioPlayer
 - contrôles aux clavier
 - rework navigation ?
+- paufiner historique ?
 - disbled restart d'AudioPlayer si déjà à 0 ?
 
 FIX
