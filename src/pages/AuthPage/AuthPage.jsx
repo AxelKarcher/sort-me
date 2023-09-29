@@ -23,7 +23,7 @@ const AuthPage = ({}) => {
     data: {
       'grant_type': 'authorization_code',
       'code': userCode,
-      'redirect_uri': import.meta.env.VITE_SPOTIFY_REDIRECT_URI_PROD,
+      'redirect_uri': import.meta.env.VITE_SPOTIFY_REDIRECT_URI,
     },
     headers: {
       'Authorization': `Basic ${btoa(import.meta.env.VITE_SPOTIFY_CLIENT_ID + ':' + import.meta.env.VITE_SPOTIFY_CLIENT_SECRET)}`,
