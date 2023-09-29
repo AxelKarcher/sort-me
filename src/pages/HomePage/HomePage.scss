@@ -25,6 +25,12 @@
       margin-bottom: ui.$margin;
       box-sizing: border-box;
 
+      .target-row {
+        display: flex;
+        align-items: center;
+        gap: ui.$margin;
+      }
+
       #data-control {
         display: flex;
         align-items: center;

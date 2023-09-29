@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 
 import selectIcon from 'icons/select.svg'
 import './PlaylistCard.scss'
@@ -8,26 +8,19 @@ import Icon from 'components/Icon/Icon'
 import Spinner from 'components/Spinner/Spinner'
 
 const PlaylistCard = ({
-  data, onClick, emptyLabel, icon,
+  data, onClick, emptyLabel, icon, addToHistory,
   fullWidth, onClose, trackUri, isColored
 }) => {
 
   const [isHover, setIsHover] = useState(false)
 
-  const [addLoading, setAddLoading] = useState(false) // tmp
-
-  // const {res: addRes, loading: addLoading, call: addCall} = useAxios({
-  const {res: addRes, loading, call: addCall} = useAxios({
+  const {res: addRes, loading: addLoading, call: addCall} = useAxios({
     infos: {method: 'post', url: `/playlists/${data?.id}/tracks`},
-    data: {uris: [trackUri]},
-    debug: true
+    data: {uris: [trackUri]}
   })
 
-  // tmp
-  const tmp = () => {
-    setAddLoading(true)
-    setTimeout(() => {setAddLoading(false)}, 1000)
-  }
+  // If added a song somewhere, trigger history push
+  useEffect(() => {if (addRes !== undefined) {addToHistory(data)}}, [addRes])
 
   const handleOnClose = (e) => {
     onClose()
@@ -48,7 +41,7 @@ const PlaylistCard = ({
       `}
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}
-      onClick={trackUri ? tmp : onClick} // replace tmp par addCall
+      onClick={trackUri ? addCall : onClick}
     >
       {
         data

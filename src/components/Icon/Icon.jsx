@@ -2,13 +2,14 @@ import './Icon.scss'
 
 const Icon = ({
   disabled, size = 50, icon,
-  onClick, className
+  onClick, className, color
 }) => {
   return (
     <img
       className={`
         icon-container
         ${onClick && ' clickable'}
+        ${color && ` ${color}`}
         ${(disabled || onClick === null) && ' disabled'}
         ${className && ` ${className}`}
       `}

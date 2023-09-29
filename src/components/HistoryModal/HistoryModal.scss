@@ -1,0 +1,11 @@
+@use 'styles/colors' as colors;
+@use 'styles/ui' as ui;
+
+.history-modal-container {
+  display: flex;
+  flex-direction: column;
+  gap: ui.$margin;
+  padding-right: (ui.$margin);
+  box-sizing: border-box;
+  overflow-y: scroll;
+}

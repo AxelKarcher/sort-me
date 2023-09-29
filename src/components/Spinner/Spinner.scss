@@ -31,6 +31,10 @@
   border-width: 8px;
 }
 
+.spinner-container.margin-top {
+  margin-top: ui.$margin;
+}
+
 .spinner-container.inverted {
   border-top-color: colors.$textBis;
   border-bottom-color: colors.$textBis;

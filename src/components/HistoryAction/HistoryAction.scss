@@ -1,0 +1,14 @@
+@use 'styles/ui' as ui;
+
+#history-action-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: ui.$margin;
+
+  .infos-img {
+    border-radius: ui.$radius;
+    height: 40px;
+  }
+}

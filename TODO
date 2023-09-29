@@ -4,12 +4,12 @@ STYLE
 - scrollbars de PlaylistsScroller besoin padding bords
 - border radius des image des PlaylistCard un peu goofy ?
 - ombres des PlaylistCard coupées dans le Picker
+- rework Modal (titre séparé du children)
 
 FEATURE
-- implémenter le next et prev des tracks
-- mettre les spinners
+- déployer
 - rework en context
-- historique des actions
+- paufiner historique
 - field pour rentrer direct la page de tracks
 - slider pour le volume pour AudioPlayer
 - contrôles aux clavier
@@ -17,4 +17,4 @@ FEATURE
 - disbled restart d'AudioPlayer si déjà à 0 ?
 
 FIX
-- target devrait pas pouvoir être sorter ?
+- target devrait pas pouvoir être sorter
