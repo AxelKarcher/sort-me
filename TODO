@@ -18,7 +18,3 @@ FEATURE
 
 FIX
 - target devrait pas pouvoir être sorter
-
-DONE
-- rework Modal (titre séparé du children)
-- fix volume crash d'AudioPlayer
