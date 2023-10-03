@@ -13,8 +13,15 @@
   z-index: 100;
 
   .modal-panel {
+    position: relative;
     max-height: 75vh;
     max-width: 75vw;
+
+    .close-icon {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+    }
   }
 }
 

@@ -1,19 +1,36 @@
 @use 'styles/colors' as colors;
 @use 'styles/ui' as ui;
 
+.separator-container {
+  width: 100%;
+  height: 2px;
+  background-color: colors.$text;
+}
+
 .panel-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: ui.$margin;
   background-color: colors.$background;
   border-radius: ui.$radius;
-  padding: ui.$padding;
-  box-sizing: border-box;
   box-shadow: 0 0 colors.$shadowAmount colors.$shadow;
   transition: all ui.$durationFast;
 
-  #title {font-weight: bold;}
+  .title-container {
+    width: 100%;
+    text-align: center;
+
+    #title {font-weight: bold;}
+  }
+
+  .children-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: ui.$margin;
+    padding: 10px;
+    overflow-y: auto;
+  }
 }
 
 .panel-container.no-shadows {box-shadow: 0 0 colors.$shadowAmount transparent;}

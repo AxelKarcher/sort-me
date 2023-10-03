@@ -4,6 +4,11 @@ const Panel = ({
   onClick, className, children,
   noShadows, imgBg, title
 }) => {
+
+  const Separator = () => (
+    <div className='separator-container' />
+  )
+
   return (
     <div
       onClick={onClick}
@@ -13,8 +18,14 @@ const Panel = ({
         (noShadows ? ' no-shadows' : '')
       }
     >
-      {title && <span id='title'>{title}</span>}
-      {children}
+      {
+        title &&
+        <div className='title-container'>
+          <span id='title'>{title}</span>
+          <Separator />
+        </div>
+      }
+      <div className='children-container'>{children}</div>
     </div>
   )
 }

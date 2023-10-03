@@ -1,0 +1,20 @@
+@use 'styles/colors' as colors;
+@use 'styles/ui' as ui;
+
+.tooltip-container {
+  position: absolute;
+  top: -50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  gap: ui.$margin;
+  background-color: colors.$background;
+  border-radius: ui.$radius;
+  padding: ui.$padding;
+  box-sizing: border-box;
+  box-shadow: 0 0 colors.$shadowAmount colors.$shadow;
+  z-index: 50;
+}
+
+
+.tooltip-container.not-visible {display: none;}

@@ -1,5 +1,7 @@
 import './Modal.scss'
 import Panel from 'components/Panel/Panel'
+import cancelIcon from 'icons/cancel.svg'
+import Icon from 'components/Icon/Icon'
 
 const Modal = ({
   isVisible, handleClose,
@@ -18,6 +20,12 @@ const Modal = ({
       }
     >
       <Panel className='modal-panel' title={title} onClick={handleClick}>
+        <Icon
+          className='close-icon'
+          icon={cancelIcon}
+          onClick={handleClose}
+          size={20}
+        />
         {children}
       </Panel>
     </div>

@@ -118,7 +118,7 @@ const HomePage = ({}) => {
         <PlaylistsScroller
           playlists={playlists}
           trackUri={tracks?.items[currTrackIdx]?.track?.uri}
-          onCreateSuccess={() => playlistsCall()}
+          onCreateSuccess={playlistsCall}
           addToHistory={addToHistory}
         />
       }

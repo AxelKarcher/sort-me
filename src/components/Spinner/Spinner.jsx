@@ -5,9 +5,9 @@ const Spinner = ({size, className, inverted, needMarginTop}) => {
     <div
       className={`
         spinner-container
-        ${(needMarginTop && ' margin-top')}
-        ${(size && ` ${size}`)}
-        ${(inverted && ' inverted')}
+        ${needMarginTop && ' margin-top'}
+        ${size}
+        ${inverted && ' inverted'}
         ${className}
       `}
     />

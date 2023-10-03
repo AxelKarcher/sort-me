@@ -1,10 +1,10 @@
 STYLE
-- rework Modal (titre séparé du children)
-  - ombres des PlaylistCard coupées dans le Picker
+- ombres des items coupées dans les modales
 - passer aux icons react-icons (ou autre lib)
 - extraire couleur dominante de la cover
 - scrollbars de PlaylistsScroller besoin padding bords
 - border radius des image des PlaylistCard un peu goofy ?
+- paufiner bouton pour fermer modale
 
 FEATURE
 - rework en context
@@ -18,3 +18,7 @@ FEATURE
 
 FIX
 - target devrait pas pouvoir être sorter
+
+DONE
+- rework Modal (titre séparé du children)
+- fix volume crash d'AudioPlayer

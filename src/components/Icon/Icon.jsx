@@ -1,17 +1,19 @@
 import './Icon.scss'
 
 const Icon = ({
-  disabled, size = 50, icon,
-  onClick, className, color
+  disabled, size = 50, icon, onMouseLeave,
+  onClick, className, color, onMouseEnter,
 }) => {
   return (
     <img
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
       className={`
         icon-container
         ${onClick && ' clickable'}
         ${color && ` ${color}`}
         ${(disabled || onClick === null) && ' disabled'}
-        ${className && ` ${className}`}
+        ${className}
       `}
       src={icon}
       height={size}
