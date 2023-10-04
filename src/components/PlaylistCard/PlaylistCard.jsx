@@ -30,7 +30,7 @@ const PlaylistCard = ({
   }
 
   // Checks if image is invalid
-  const isImageNull = data?.images[0]?.url === undefined
+  const isImageNull = data?.images?.[0]?.url === undefined
 
   return (
     <div
@@ -49,7 +49,7 @@ const PlaylistCard = ({
         ?
         <>
           {
-            data?.images[0]?.url &&
+            data?.images?.[0]?.url &&
             <img
               className='album-cover'
               src={data?.images[0]?.url}

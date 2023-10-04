@@ -111,7 +111,7 @@ const HomePage = ({}) => {
           <PlaylistCard
             key={i}
             data={playlist}
-            onClick={(playlist) => setTarget(playlist)}
+            onClick={() => setTarget(playlist)}
             fullWidth
           />
         ))}

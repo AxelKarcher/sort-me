@@ -44,7 +44,7 @@ const PlaylistsScroller = ({
           <PlaylistCard
             key={i}
             data={playlist}
-            onClick={(playlist) => addSorter(playlist)}
+            onClick={() => addSorter(playlist)}
             fullWidth
           />
         ))}
