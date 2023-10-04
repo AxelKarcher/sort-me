@@ -2,7 +2,6 @@ import {useState, useEffect} from 'react'
 
 import './PlaylistsScroller.scss'
 import PlaylistCard from 'components/PlaylistCard/PlaylistCard'
-import PlaylistPicker from 'components/PlaylistPicker/PlaylistPicker'
 import Modal from 'components/Modal/Modal'
 import CreatePlaylistModal from './CreatePlaylistModal/CreatePlaylistModal'
 
@@ -41,7 +40,14 @@ const PlaylistsScroller = ({
         isVisible={sortersChoiceModal}
         handleClose={() => setSortersChoiceModal(false)}
       >
-        <PlaylistPicker playlists={possibleSorters} onPlaylistClick={(e) => addSorter(e)} />
+        {playlists?.map((playlist, i) => (
+          <PlaylistCard
+            key={i}
+            data={playlist}
+            onClick={(playlist) => addSorter(playlist)}
+            fullWidth
+          />
+        ))}
       </Modal>
       {/* Create playlist modal */}
       <CreatePlaylistModal

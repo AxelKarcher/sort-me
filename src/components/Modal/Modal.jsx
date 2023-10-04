@@ -13,11 +13,11 @@ const Modal = ({
   return (
     <div
       onClick={handleClose}
-      className={
-        'modal-container' +
-        ` ${className}` +
-        (isVisible ? '' : ' not-visible')
-      }
+      className={`
+        modal-container
+        ${className && ` ${className}`}
+        ${isVisible ? '' : ' not-visible'}
+      `}
     >
       <Panel className='modal-panel' title={title} onClick={handleClick}>
         <Icon

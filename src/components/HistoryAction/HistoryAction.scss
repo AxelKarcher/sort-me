@@ -4,11 +4,19 @@
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   gap: ui.$margin;
 
   .infos-img {
     border-radius: ui.$radius;
     height: 40px;
+  }
+
+  .status-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    width: 30px;
   }
 }

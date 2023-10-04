@@ -6,7 +6,6 @@ import useAxios from 'hooks/useAxios'
 import Header from 'components/Header/Header'
 import Modal from 'components/Modal/Modal'
 import PlaylistsScroller from 'components/PlaylistsScroller/PlaylistsScroller'
-import PlaylistPicker from 'components/PlaylistPicker/PlaylistPicker'
 import TrackController from 'components/TrackController/TrackController'
 import leftSimpleArrow from 'icons/leftSimpleArrow.svg'
 import Icon from 'components/Icon/Icon'
@@ -15,19 +14,23 @@ import useAuth from 'hooks/useAuth'
 import Spinner from 'components/Spinner/Spinner'
 import historyIcon from 'icons/history.svg'
 import HistoryModal from 'components/HistoryModal/HistoryModal'
+import {useSpotify} from 'hooks/SpotifyContext'
 
 const CALL_LIMIT = 50
 
 const HomePage = ({}) => {
 
-  const [target, setTarget] = useState()
+  const {
+    target, setTarget,
+    historyData, setHistoryData
+  } = useSpotify()
+
+  const {disconnect, setUserInfos} = useAuth()
+
   const [targetChoiceModal, setTargetChoiceModal] = useState(false)
   const [currTrackIdx, setCurrTrackIdx] = useState(0)
   const [callOffset, setCallOffset] = useState(0)
   const [historyModal, setHistoryModal] = useState(false)
-  const [historyData, setHistoryData] = useState([])
-
-  const {disconnect, setUserInfos} = useAuth()
 
   const {res: userInfos, error: userInfosErr, call: userInfosCall} = useAxios({
     infos: {method: 'get', url: '/me'},
@@ -47,6 +50,7 @@ const HomePage = ({}) => {
   // Starts with getting user infos
   useEffect(() => {userInfosCall()}, [])
 
+  // If error getting user infos, disconnect user
   useEffect(() => {if (userInfosErr !== undefined) {disconnect()}}, [userInfosErr])
 
   // If user infos OK, get playlists
@@ -79,11 +83,11 @@ const HomePage = ({}) => {
   const prevTrack = () => {setCurrTrackIdx((old) => old - 1)}
 
   const addToHistory = (playlist) => {
-    setHistoryData((old) => [...old, {
+    setHistoryData((old) => [{
       action: 'add',
       playlist: playlist,
       track: tracks?.items[currTrackIdx]?.track
-    }])
+    }, ...old])
   }
 
   const currTotal = tracks?.offset + tracks?.limit
@@ -96,20 +100,23 @@ const HomePage = ({}) => {
 
   return (
     <div id='home-page-container'>
-    <Header />
+      <Header />
       {/* Select the target */}
       <Modal
         title='Choisir la playlist à trier'
         isVisible={targetChoiceModal}
         handleClose={() => setTargetChoiceModal(false)}
       >
-        <PlaylistPicker playlists={playlists} onPlaylistClick={(e) => setTarget(e)} />
+        {playlists?.map((playlist, i) => (
+          <PlaylistCard
+            key={i}
+            data={playlist}
+            onClick={(playlist) => setTarget(playlist)}
+            fullWidth
+          />
+        ))}
       </Modal>
-      <HistoryModal
-        isVisible={historyModal}
-        data={historyData}
-        handleClose={() => setHistoryModal(false)}
-      />
+      <HistoryModal isVisible={historyModal} data={historyData} handleClose={() => setHistoryModal(false)} />
       {
         playlistsLoading
         ?

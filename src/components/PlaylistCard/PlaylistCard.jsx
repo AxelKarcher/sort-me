@@ -24,11 +24,12 @@ const PlaylistCard = ({
 
   const handleOnClose = (e) => {
     onClose()
+
     // Prevents click on playlist under this one
     e.stopPropagation()
   }
 
-  // Checks if image is undefined or invalid
+  // Checks if image is invalid
   const isImageNull = data?.images[0]?.url === undefined
 
   return (

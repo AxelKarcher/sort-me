@@ -5,6 +5,7 @@ import addIcon from 'icons/add.svg'
 import removeIcon from 'icons/remove.svg'
 import Icon from 'components/Icon/Icon'
 import cancelIcon from 'icons/cancel.svg'
+import restartIcon from 'icons/restart.svg'
 import useAxios from 'hooks/useAxios'
 import Spinner from 'components/Spinner/Spinner'
 
@@ -27,19 +28,21 @@ const HistoryAction = ({data}) => {
   const playlistImage = playlistImages[0]?.url
   const albumImage = albumImages[0]?.url
 
-  const [tmp, setTmp] = useState(false)
+  const [isReverted, setIsReverted] = useState(false)
 
-  useEffect(() => {if (tmp) {setTimeout(() => {setTmp(false)}, 1000)}}, [tmp])
-
-  const {loading: addLoading, call: addCall} = useAxios({
+  const {res: addRes, loading: addLoading, call: addCall} = useAxios({
     infos: {method: 'post', url: `/playlists/${playlistId}/tracks`},
     data: {uris: [trackUri]}
   })
 
-  const {loading: removeLoading, call: removeCall} = useAxios({
+  const {res: removeRes, loading: removeLoading, call: removeCall} = useAxios({
     infos: {method: 'delete', url: `/playlists/${playlistId}/tracks`},
     data: {uris: [trackUri]}
   })
+
+  useEffect(() => {
+    if (addRes !== undefined || removeRes !== undefined) {setIsReverted(true)}
+  }, [addRes, removeRes])
 
   const actionIsAdd = action === 'add'
 
@@ -47,27 +50,27 @@ const HistoryAction = ({data}) => {
 
   return (
     <div id='history-action-container'>
-      {
-        isLoading
-        ?
-        <Spinner />
-        :
-        <>
-          {playlistImage && <img className='infos-img' src={playlistImage} alt='action-cover' />}
-          <span>{playlistName}</span>
+      {playlistImage && <img className='infos-img' src={playlistImage} alt='action-cover' />}
+      <span>{playlistName}</span>
+      <Icon
+        icon={actionIsAdd ? addIcon : removeIcon}
+        color={actionIsAdd ? 'green' : 'red'}
+      />
+      <img className='infos-img' src={albumImage} alt='album-cover' />
+      <span>{trackName}</span>
+      <div className='status-area'>
+        {
+          isLoading
+          ?
+          <Spinner inverted size='small' />
+          :
           <Icon
-            icon={actionIsAdd ? addIcon : removeIcon}
-            color={actionIsAdd ? 'green' : 'red'}
-          />
-          <img className='infos-img' src={albumImage} alt='album-cover' />
-          <span>{trackName}</span>
-          <Icon
-            icon={cancelIcon}
+            icon={isReverted ? restartIcon : cancelIcon}
             size={25}
-            onClick={actionIsAdd ? removeCall : addCall}
+            onClick={isReverted ? null : (actionIsAdd ? removeCall : addCall)}
           />
-        </>
-      }
+        }
+      </div>
     </div>
   )
 }

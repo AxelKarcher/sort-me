@@ -1,19 +1,18 @@
 STYLE
-- ombres des items coupées dans les modales
 - passer aux icons react-icons (ou autre lib)
 - extraire couleur dominante de la cover
 - scrollbars de PlaylistsScroller besoin padding bords
 - border radius des image des PlaylistCard un peu goofy ?
 - paufiner bouton pour fermer modale
+- virer scrollbar de droite dans les modales
 
 FEATURE
-- rework en context
+~ rework en context
 - switcher automatiquement les env
 - field pour rentrer direct la page de tracks
-- slider pour le volume pour AudioPlayer
+~ pouvoir changer volume AudioPlayer
 - contrôles aux clavier
 - rework navigation ?
-- paufiner historique ?
 - disbled restart d'AudioPlayer si déjà à 0 ?
 
 FIX

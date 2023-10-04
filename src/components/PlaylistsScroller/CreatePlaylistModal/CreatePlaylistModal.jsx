@@ -17,8 +17,7 @@ const CreatePlaylistModal = ({isVisible, handleClose, onCreateSuccess}) => {
 
   const {res: addRes, loading: addLoading, call: addCall} = useAxios({
     infos: {method: 'post', url: `/users/${getUserInfos()?.id}/playlists`},
-    data: {name: name, description: desc},
-    debug: true
+    data: {name: name, description: desc}
   })
 
   useEffect(() => {if (addRes !== undefined) {
