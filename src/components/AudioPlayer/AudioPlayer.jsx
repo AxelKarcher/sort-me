@@ -82,7 +82,7 @@ const AudioPlayer = ({src, autoPlay = false, onPrevClick, onNextClick}) => {
         <Icon
           onClick={toggleMute}
           icon={isMuted ? volumeMuteIcon : volumeMaxIcon}
-          onMouseEnter={() => setVolumeTooltip(true)}
+          // onMouseEnter={() => setVolumeTooltip(true)}
         />
       </div>
     </div>

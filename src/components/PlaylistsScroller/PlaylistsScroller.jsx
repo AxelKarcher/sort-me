@@ -4,15 +4,19 @@ import './PlaylistsScroller.scss'
 import PlaylistCard from 'components/PlaylistCard/PlaylistCard'
 import Modal from 'components/Modal/Modal'
 import CreatePlaylistModal from './CreatePlaylistModal/CreatePlaylistModal'
+import {useSpotify} from 'hooks/SpotifyContext'
 
 const PlaylistsScroller = ({
   playlists, trackUri,
   onCreateSuccess, addToHistory
 }) => {
 
+  const {
+    sorters, setSorters
+  } = useSpotify()
+
   const [createPlaylistModal, setCreatePlaylistModal] = useState(false)
   const [sortersChoiceModal, setSortersChoiceModal] = useState(false)
-  const [sorters, setSorters] = useState([])
 
   // Add sorter to selection
   const addSorter = (playlist) => {setSorters((old) => [...old, playlist])}
@@ -40,7 +44,7 @@ const PlaylistsScroller = ({
         isVisible={sortersChoiceModal}
         handleClose={() => setSortersChoiceModal(false)}
       >
-        {playlists?.map((playlist, i) => (
+        {possibleSorters?.map((playlist, i) => (
           <PlaylistCard
             key={i}
             data={playlist}
